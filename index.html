@@ -185,10 +185,11 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--te
 
 </div>
 
-<!-- Hidden iframe for Zoho Forms submission -->
-<iframe name="zoho_iframe" id="zoho_iframe" style="display:none"></iframe>
-
 <script>
+window.onerror = function(msg, src, line, col, err) {
+  document.body.innerHTML = '<div style="padding:20px;color:red;font-family:sans-serif"><strong>Error:</strong> ' + msg + ' (line ' + line + ')</div>';
+  return true;
+};
 const AXES=[
   {label:'Situación fiscal',short:'Fiscal'},
   {label:'Operación y procesos',short:'Operación'},
@@ -338,32 +339,28 @@ function submitToZoho(name, email, giro, size, openText, axisScores){
     const firstName = nameParts[0] || name;
     const lastName = nameParts.slice(1).join(' ') || '-';
 
-    const zohoForm = document.createElement('form');
-    zohoForm.method = 'POST';
-    zohoForm.action = 'https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit';
-    zohoForm.target = 'zoho_iframe';
-    zohoForm.style.display = 'none';
+    const scoresSummary = 'Fiscal=' + axisScores[0] + '/15 | Operacion=' + axisScores[1] + '/15 | Internacional=' + axisScores[2] + '/15 | Organizacion=' + axisScores[3] + '/15';
+    const fullComment = (openText || 'Sin comentarios') + ' || SCORES: ' + scoresSummary;
 
-    const fields = {
-      'Name_First': firstName,
-      'Name_Last': lastName,
-      'Email': email,
-      'SingleLine': giro || 'No indicado',
-      'Dropdown': size || 'No indicado',
-      'MultiLine': (openText || 'Sin comentarios') + ' | Scores: Fiscal=' + axisScores[0] + '/15 Operacion=' + axisScores[1] + '/15 Internacional=' + axisScores[2] + '/15 Organizacion=' + axisScores[3] + '/15'
-    };
+    const params = new URLSearchParams();
+    params.append('Name_First', firstName);
+    params.append('Name_Last', lastName);
+    params.append('Email', email);
+    params.append('SingleLine', giro || 'No indicado');
+    params.append('Dropdown', size || 'No indicado');
+    params.append('MultiLine', fullComment);
 
-    Object.entries(fields).forEach(([key, val]) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = val;
-      zohoForm.appendChild(input);
+    fetch('https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+      mode: 'no-cors'
+    }).then(() => {
+      console.log('Zoho: enviado');
+    }).catch(e => {
+      console.log('Zoho fetch error:', e);
     });
 
-    document.body.appendChild(zohoForm);
-    zohoForm.submit();
-    setTimeout(()=>{ if(zohoForm.parentNode) zohoForm.parentNode.removeChild(zohoForm); }, 5000);
   } catch(e) {
     console.log('Zoho submit error:', e);
   }
