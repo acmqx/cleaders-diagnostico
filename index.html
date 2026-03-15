@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -623,14 +624,14 @@
       </a>
     </div>
     <p class="footer-note">
-      cleaders.com · contacto@cleaders.com · +52 55 5871 2454<br>
+      cleaders.com · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14777b7a607577607b5477787175707166673a777b79">[email&#160;protected]</a> · +52 55 5871 2454<br>
       <span style="color:#c0cad8">CLeaders · Firma de arquitectura empresarial</span>
     </p>
   </div>
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const AXES=[
   {label:'Situación fiscal',short:'Fiscal'},
   {label:'Operación y procesos',short:'Operación'},
@@ -742,8 +743,22 @@ function showResults(){
     return;
   }
   const giro=document.getElementById('f-giro').value.trim();
+  const size=document.getElementById('f-size').value;
+  const open=document.getElementById('f-open').value.trim();
   const axisScores=[0,0,0,0];
   QS.forEach((q,i)=>{if(answers[i]!==null)axisScores[q.axis]+=q.scores[answers[i]];});
+  // Submit to Zoho Forms
+  const zohoData=new FormData();
+  zohoData.append('Name_First', name);
+  zohoData.append('Email', email);
+  zohoData.append('SingleLine', giro);
+  zohoData.append('Dropdown', size);
+  zohoData.append('MultiLine', open + ' | Scores: Fiscal=' + axisScores[0] + ' Operacion=' + axisScores[1] + ' Internacional=' + axisScores[2] + ' Organizacion=' + axisScores[3]);
+  fetch('https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit', {
+    method: 'POST',
+    body: zohoData,
+    mode: 'no-cors'
+  }).catch(()=>{});
 
   const grid=document.getElementById('results-grid');
   grid.innerHTML='';
@@ -771,11 +786,4 @@ function showResults(){
   document.getElementById('worst-box').innerHTML=`
     ${skipMsg}
     <div class="worst-box" style="background:${wc.bg};border-color:${wc.hex}">
-      <div class="worst-title" style="color:${wc.hex}">Área más crítica: ${AXES[worstAxis].label}</div>
-      <div class="worst-msg">${MSGS[worstAxis]}${giroText}</div>
-    </div>`;
-  show('s-results');
-}
-</script>
-</body>
-</html>
+  
