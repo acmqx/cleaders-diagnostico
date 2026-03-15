@@ -748,17 +748,46 @@ function showResults(){
   const axisScores=[0,0,0,0];
   QS.forEach((q,i)=>{if(answers[i]!==null)axisScores[q.axis]+=q.scores[answers[i]];});
   // Submit to Zoho Forms
-  const zohoData=new FormData();
-  zohoData.append('Name_First', name);
-  zohoData.append('Email', email);
-  zohoData.append('SingleLine', giro);
-  zohoData.append('Dropdown', size);
-  zohoData.append('MultiLine', open + ' | Scores: Fiscal=' + axisScores[0] + ' Operacion=' + axisScores[1] + ' Internacional=' + axisScores[2] + ' Organizacion=' + axisScores[3]);
-  fetch('https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit', {
-    method: 'POST',
-    body: zohoData,
-    mode: 'no-cors'
-  }).catch(()=>{});
+  // Build form data with exact Zoho field names
+  const zohoForm = document.createElement('form');
+  zohoForm.method = 'POST';
+  zohoForm.action = 'https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit';
+  zohoForm.target = 'zoho_hidden_frame';
+  zohoForm.style.display = 'none';
+
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0] || name;
+  const lastName = nameParts.slice(1).join(' ') || '-';
+
+  const fields = {
+    'Name_First': firstName,
+    'Name_Last': lastName,
+    'Email': email,
+    'SingleLine': giro || 'No indicado',
+    'Dropdown': size || 'No indicado',
+    'MultiLine': (open || 'Sin comentarios') + ' | Riesgo: Fiscal=' + axisScores[0] + '/15 Operacion=' + axisScores[1] + '/15 Internacional=' + axisScores[2] + '/15 Organizacion=' + axisScores[3] + '/15'
+  };
+
+  Object.entries(fields).forEach(([key, val]) => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;
+    input.value = val;
+    zohoForm.appendChild(input);
+  });
+
+  // Hidden iframe to avoid page redirect
+  if (!document.getElementById('zoho_hidden_frame')) {
+    const iframe = document.createElement('iframe');
+    iframe.name = 'zoho_hidden_frame';
+    iframe.id = 'zoho_hidden_frame';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+  }
+
+  document.body.appendChild(zohoForm);
+  zohoForm.submit();
+  setTimeout(() => { if (zohoForm.parentNode) zohoForm.parentNode.removeChild(zohoForm); }, 3000);
 
   const grid=document.getElementById('results-grid');
   grid.innerHTML='';
