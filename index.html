@@ -7,631 +7,188 @@
 <title>Diagnóstico Empresarial Gratuito · CLeaders</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:       #28367B;
-    --navy-light: #3a4d99;
-    --navy-dark:  #1e2a61;
-    --gray:       #4C4C4F;
-    --blue-light: #A6BBCD;
-    --blue-pale:  #e8eff4;
-    --cream:      #f5f7fa;
-    --white:      #ffffff;
-    --border:     #dde3e8;
-    --text:       #1e2435;
-    --text-sec:   #4C4C4F;
-    --text-ter:   #8a909d;
-
-    --green:      #1a5c38;
-    --green-bg:   #e0f2e9;
-    --yellow:     #7d5c00;
-    --yellow-bg:  #fef3c7;
-    --orange:     #8a3010;
-    --orange-bg:  #fde8dc;
-    --red:        #8b1c1c;
-    --red-bg:     #fee2e2;
-
-    --radius:     14px;
-    --radius-sm:  8px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Nunito Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 16px 80px;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 560px;
-  }
-
-  /* LOGO */
-  .logo-bar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 44px;
-  }
-  .logo-mark {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-  .logo-divider {
-    width: 1px;
-    height: 28px;
-    background: var(--border);
-    margin-left: 4px;
-  }
-  .logo-context {
-    font-size: 11px;
-    color: var(--text-ter);
-    letter-spacing: 0.05em;
-  }
-
-  /* SCREENS */
-  .screen { display: none; }
-  .screen.active { display: block; animation: fadeUp .28s ease; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* LIGHTS */
-  .lights {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 28px;
-  }
-  .light {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-  }
-
-  /* TYPOGRAPHY */
-  .display {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px;
-    font-weight: 500;
-    line-height: 1.18;
-    color: var(--navy);
-    letter-spacing: -0.3px;
-    margin-bottom: 16px;
-  }
-  .body-lg {
-    font-size: 15px;
-    color: var(--text-sec);
-    line-height: 1.75;
-    margin-bottom: 28px;
-  }
-
-  /* CHIPS */
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 36px;
-  }
-  .chip {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 20px;
-    background: var(--white);
-    color: var(--navy);
-    border: 1px solid var(--blue-pale);
-    letter-spacing: 0.01em;
-  }
-
-  /* BUTTONS */
-  .btn-main {
-    display: block;
-    width: 100%;
-    padding: 16px;
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: background .2s, transform .1s;
-    letter-spacing: 0.02em;
-  }
-  .btn-main:hover { background: var(--navy-light); }
-  .btn-main:active { transform: scale(0.99); }
-
-  .btn-ghost {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: var(--text-sec);
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all .2s;
-    margin-top: 10px;
-    text-align: center;
-  }
-  .btn-ghost:hover { background: var(--white); }
-
-  .btn-back {
-    padding: 12px 18px;
-    background: transparent;
-    color: var(--text-sec);
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all .2s;
-    white-space: nowrap;
-  }
-  .btn-back:hover { background: var(--white); }
-
-  .privacy-note {
-    font-size: 11px;
-    color: var(--text-ter);
-    text-align: center;
-    margin-top: 14px;
-    line-height: 1.6;
-  }
-
-  /* PROGRESS */
-  .progress-wrap { margin-bottom: 28px; }
-  .progress-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .progress-axis {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-  .progress-count {
-    font-size: 12px;
-    color: var(--text-ter);
-  }
-  .progress-bar {
-    height: 2px;
-    background: var(--blue-pale);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--navy);
-    border-radius: 2px;
-    transition: width .45s ease;
-  }
-
-  /* QUESTION */
-  .q-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.38;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-  .q-note {
-    font-size: 13px;
-    color: var(--text-ter);
-    line-height: 1.65;
-    margin-bottom: 22px;
-    padding: 10px 14px;
-    background: var(--blue-pale);
-    border-radius: var(--radius-sm);
-    border-left: 3px solid var(--blue-light);
-  }
-
-  /* OPTIONS */
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .opt {
-    padding: 14px 18px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 14px;
-    color: var(--text);
-    cursor: pointer;
-    transition: all .18s;
-    background: var(--white);
-    text-align: left;
-    line-height: 1.45;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 400;
-    position: relative;
-  }
-  .opt:hover {
-    border-color: var(--navy);
-    background: var(--blue-pale);
-  }
-  .opt.selected {
-    border-color: var(--navy);
-    background: var(--navy);
-    color: var(--white);
-    font-weight: 600;
-  }
-  .opt.selected::after {
-    content: '✓';
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: var(--blue-light);
-  }
-
-  /* SKIP WARNING */
-  .skip-wrap {
-    margin-top: 4px;
-  }
-  .skip-note {
-    font-size: 11px;
-    color: var(--text-ter);
-    text-align: center;
-    margin-top: 8px;
-    line-height: 1.5;
-    padding: 6px 10px;
-    background: var(--yellow-bg);
-    border-radius: var(--radius-sm);
-    color: var(--yellow);
-    display: none;
-  }
-  .skip-note.visible { display: block; }
-
-  .nav-row {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  /* FORM */
-  .ready-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--green);
-    background: var(--green-bg);
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 14px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-  }
-  .form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-  .form-sub {
-    font-size: 14px;
-    color: var(--text-sec);
-    line-height: 1.65;
-    margin-bottom: 28px;
-  }
-  .form-group { margin-bottom: 16px; }
-  .form-label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-sec);
-    margin-bottom: 6px;
-  }
-  .form-label .opt-tag {
-    font-weight: 400;
-    color: var(--text-ter);
-    font-size: 12px;
-    margin-left: 4px;
-  }
-  .form-input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    font-family: 'Nunito Sans', sans-serif;
-    background: var(--white);
-    color: var(--text);
-    transition: border-color .2s;
-  }
-  .form-input:focus {
-    outline: none;
-    border-color: var(--navy);
-  }
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 24px 0;
-  }
-  .open-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .open-sublabel {
-    display: block;
-    font-size: 12px;
-    color: var(--text-ter);
-    line-height: 1.65;
-    margin-bottom: 10px;
-  }
-  .open-box {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    font-family: 'Nunito Sans', sans-serif;
-    background: var(--white);
-    color: var(--text);
-    min-height: 96px;
-    resize: none;
-    line-height: 1.6;
-    transition: border-color .2s;
-  }
-  .open-box:focus {
-    outline: none;
-    border-color: var(--navy);
-  }
-  .open-box::placeholder { color: var(--text-ter); }
-
-  /* RESULTS */
-  .results-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 20px;
-  }
-  .results-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .result-card {
-    padding: 16px;
-    border-radius: var(--radius);
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    transition: border-color .2s;
-  }
-  .r-axis {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-    color: var(--text-ter);
-    margin-bottom: 10px;
-  }
-  .r-dot {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  .r-status {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-  .r-score {
-    font-size: 11px;
-    color: var(--text-ter);
-  }
-
-  .worst-box {
-    padding: 16px 18px;
-    border-radius: var(--radius);
-    margin-bottom: 20px;
-    border-left: 4px solid;
-  }
-  .worst-title {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .worst-msg {
-    font-size: 13px;
-    line-height: 1.65;
-    color: var(--text-sec);
-  }
-
-  .cta-box {
-    padding: 22px;
-    background: var(--navy);
-    border-radius: var(--radius);
-    margin-top: 8px;
-  }
-  .cta-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-  .cta-box p {
-    font-size: 13px;
-    color: rgba(166,187,205,0.9);
-    line-height: 1.65;
-    margin-bottom: 18px;
-  }
-  .btn-gold {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    background: var(--blue-light);
-    color: var(--navy-dark);
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: background .2s;
-    text-decoration: none;
-    text-align: center;
-    letter-spacing: 0.01em;
-  }
-  .btn-gold:hover { background: #c0d4e4; }
-
-  .footer-note {
-    font-size: 11px;
-    color: var(--text-ter);
-    text-align: center;
-    margin-top: 28px;
-    line-height: 1.8;
-  }
-
-  @media (max-width: 480px) {
-    .display { font-size: 27px; }
-    .q-text { font-size: 21px; }
-  }
+:root{--navy:#28367B;--navy-light:#3a4d99;--navy-dark:#1e2a61;--gray:#4C4C4F;--blue-light:#A6BBCD;--blue-pale:#e8eff4;--cream:#f5f7fa;--white:#ffffff;--border:#dde3e8;--text:#1e2435;--text-sec:#4C4C4F;--text-ter:#8a909d;--green:#1a5c38;--green-bg:#e0f2e9;--yellow:#7d5c00;--yellow-bg:#fef3c7;--orange:#8a3010;--orange-bg:#fde8dc;--red:#8b1c1c;--red-bg:#fee2e2;--radius:14px;--radius-sm:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 80px;}
+.container{width:100%;max-width:560px;}
+.logo-bar{display:flex;align-items:center;gap:14px;margin-bottom:44px;}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase;}
+.logo-tagline{font-size:9px;font-weight:600;color:var(--blue-light);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
+.logo-divider{width:1px;height:28px;background:var(--border);margin-left:4px;}
+.logo-context{font-size:11px;color:var(--text-ter);letter-spacing:.05em;}
+.screen{display:none;}.screen.active{display:block;animation:fadeUp .28s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.lights{display:flex;gap:8px;margin-bottom:28px;}
+.light{width:14px;height:14px;border-radius:50%;}
+.display{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;line-height:1.18;color:var(--navy);letter-spacing:-.3px;margin-bottom:16px;}
+.body-lg{font-size:15px;color:var(--text-sec);line-height:1.75;margin-bottom:28px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px;}
+.chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--white);color:var(--navy);border:1px solid var(--blue-pale);letter-spacing:.01em;}
+.btn-main{display:block;width:100%;padding:16px;background:var(--navy);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:background .2s,transform .1s;letter-spacing:.02em;}
+.btn-main:hover{background:var(--navy-light);}
+.btn-main:active{transform:scale(.99);}
+.btn-ghost{display:block;width:100%;padding:12px;background:transparent;color:var(--text-sec);font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:400;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;margin-top:10px;text-align:center;}
+.btn-ghost:hover{background:var(--white);}
+.btn-back{padding:12px 18px;background:transparent;color:var(--text-sec);font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:400;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.btn-back:hover{background:var(--white);}
+.privacy-note{font-size:11px;color:var(--text-ter);text-align:center;margin-top:14px;line-height:1.6;}
+.progress-wrap{margin-bottom:28px;}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.progress-axis{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);}
+.progress-count{font-size:12px;color:var(--text-ter);}
+.progress-bar{height:2px;background:var(--blue-pale);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--navy);border-radius:2px;transition:width .45s ease;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;line-height:1.38;color:var(--navy);margin-bottom:10px;}
+.q-note{font-size:13px;color:var(--text-ter);line-height:1.65;margin-bottom:22px;padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius-sm);border-left:3px solid var(--blue-light);}
+.options{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.opt{padding:14px 18px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;color:var(--text);cursor:pointer;transition:all .18s;background:var(--white);text-align:left;line-height:1.45;font-family:'Nunito Sans',sans-serif;font-weight:400;position:relative;}
+.opt:hover{border-color:var(--navy);background:var(--blue-pale);}
+.opt.selected{border-color:var(--navy);background:var(--navy);color:var(--white);font-weight:600;}
+.opt.selected::after{content:'✓';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--blue-light);}
+.skip-note{font-size:11px;text-align:center;margin-top:8px;line-height:1.5;padding:6px 10px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow);display:none;}
+.skip-note.visible{display:block;}
+.nav-row{display:flex;gap:10px;align-items:stretch;}
+.ready-badge{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:4px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:.04em;text-transform:uppercase;}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+.form-sub{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:28px;}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text-sec);margin-bottom:6px;}
+.form-label .opt-tag{font-weight:400;color:var(--text-ter);font-size:12px;margin-left:4px;}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito Sans',sans-serif;background:var(--white);color:var(--text);transition:border-color .2s;}
+.form-input:focus{outline:none;border-color:var(--navy);}
+.divider{border:none;border-top:1px solid var(--border);margin:24px 0;}
+.open-label{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.open-sublabel{display:block;font-size:12px;color:var(--text-ter);line-height:1.65;margin-bottom:10px;}
+.open-box{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:'Nunito Sans',sans-serif;background:var(--white);color:var(--text);min-height:96px;resize:none;line-height:1.6;transition:border-color .2s;}
+.open-box:focus{outline:none;border-color:var(--navy);}
+.open-box::placeholder{color:var(--text-ter);}
+.results-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--navy);margin-bottom:20px;}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.result-card{padding:16px;border-radius:var(--radius);background:var(--white);border:1.5px solid var(--border);}
+.r-axis{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-ter);margin-bottom:10px;}
+.r-dot{width:30px;height:30px;border-radius:50%;margin-bottom:10px;}
+.r-status{font-size:14px;font-weight:600;margin-bottom:3px;}
+.r-score{font-size:11px;color:var(--text-ter);}
+.worst-box{padding:16px 18px;border-radius:var(--radius);margin-bottom:20px;border-left:4px solid;}
+.worst-title{font-size:14px;font-weight:600;margin-bottom:6px;}
+.worst-msg{font-size:13px;line-height:1.65;color:var(--text-sec);}
+.cta-box{padding:22px;background:var(--navy);border-radius:var(--radius);margin-top:8px;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--white);margin-bottom:8px;}
+.cta-box p{font-size:13px;color:rgba(166,187,205,.9);line-height:1.65;margin-bottom:18px;}
+.btn-gold{display:block;width:100%;padding:14px;background:var(--blue-light);color:var(--navy-dark);font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s;text-decoration:none;text-align:center;letter-spacing:.01em;}
+.btn-gold:hover{background:#c0d4e4;}
+.footer-note{font-size:11px;color:var(--text-ter);text-align:center;margin-top:28px;line-height:1.8;}
+.skip-warning{font-size:11px;color:var(--text-ter);text-align:center;margin-top:6px;}
+@media(max-width:480px){.display{font-size:27px;}.q-text{font-size:21px;}}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- LOGO -->
-  <div class="logo-bar">
-<img src="data:image/png;base64,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" alt="CLeaders" style="height:40px;width:auto">
-    <div class="logo-divider"></div>
-    <span class="logo-context">Diagnóstico empresarial</span>
+<div class="logo-bar">
+  <div>
+    <div class="logo-name">CLeaders</div>
+    <div class="logo-tagline">Consulting for Leaders</div>
   </div>
+  <div class="logo-divider"></div>
+  <span class="logo-context">Diagnóstico empresarial</span>
+</div>
 
-  <!-- INTRO -->
-  <div class="screen active" id="s-intro">
-    <div class="lights">
-      <div class="light" style="background:#1a5c38"></div>
-      <div class="light" style="background:#b5830a"></div>
-      <div class="light" style="background:#c4501a"></div>
-      <div class="light" style="background:#b91c1c"></div>
-    </div>
-    <h1 class="display">¿Sabes en qué nivel de riesgo opera tu empresa?</h1>
-    <p class="body-lg">20 preguntas simples, menos de 5 minutos. Sin tecnicismos. Al final ves un semáforo con el nivel de riesgo real de tu negocio en 4 áreas críticas — y es completamente gratis.</p>
-    <div class="chips">
-      <span class="chip">Situación fiscal</span>
-      <span class="chip">Operación y procesos</span>
-      <span class="chip">Crecimiento internacional</span>
-      <span class="chip">Organización interna</span>
-    </div>
-    <button class="btn-main" onclick="startDiag()">Quiero saber cómo está mi empresa</button>
-    <p class="privacy-note">Gratuito · Sin compromiso · Tus datos no se comparten con terceros</p>
+<!-- INTRO -->
+<div class="screen active" id="s-intro">
+  <div class="lights">
+    <div class="light" style="background:#1a5c38"></div>
+    <div class="light" style="background:#b5830a"></div>
+    <div class="light" style="background:#c4501a"></div>
+    <div class="light" style="background:#b91c1c"></div>
   </div>
-
-  <!-- QUESTIONS -->
-  <div class="screen" id="s-questions">
-    <div class="progress-wrap">
-      <div class="progress-top">
-        <span class="progress-axis" id="q-axis"></span>
-        <span class="progress-count" id="step-count">1 / 20</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="prog" style="width:5%"></div>
-      </div>
-    </div>
-    <div class="q-text" id="q-text"></div>
-    <div id="q-note-wrap"></div>
-    <div class="options" id="q-options"></div>
-    <div class="nav-row">
-      <button class="btn-back" id="btn-back" onclick="prevQ()" style="display:none">← Atrás</button>
-      <button class="btn-ghost" id="btn-skip" onclick="skipQ()" style="flex:1;margin-top:0">Omitir esta pregunta</button>
-    </div>
-    <div class="skip-note" id="skip-note">
-      Las preguntas omitidas no se puntúan y pueden afectar la precisión de tu resultado.
-    </div>
+  <h1 class="display">¿Sabes en qué nivel de riesgo opera tu empresa?</h1>
+  <p class="body-lg">20 preguntas simples, menos de 5 minutos. Sin tecnicismos. Al final ves un semáforo con el nivel de riesgo real de tu negocio en 4 áreas críticas — y es completamente gratis.</p>
+  <div class="chips">
+    <span class="chip">Situación fiscal</span>
+    <span class="chip">Operación y procesos</span>
+    <span class="chip">Crecimiento internacional</span>
+    <span class="chip">Organización interna</span>
   </div>
+  <button class="btn-main" onclick="startDiag()">Quiero saber cómo está mi empresa</button>
+  <p class="privacy-note">Gratuito · Sin compromiso · Tus datos no se comparten con terceros</p>
+</div>
 
-  <!-- FORM -->
-  <div class="screen" id="s-form">
-    <span class="ready-badge">Diagnóstico completado</span>
-    <h2 class="form-title">Tu semáforo está listo</h2>
-    <p class="form-sub">Solo necesitamos dos datos para mostrarte los resultados y enviarte un resumen personalizado por correo.</p>
-
-    <div class="form-group">
-      <label class="form-label">Nombre completo *</label>
-      <input class="form-input" id="f-name" type="text" placeholder="Tu nombre">
+<!-- QUESTIONS -->
+<div class="screen" id="s-questions">
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-axis" id="q-axis"></span>
+      <span class="progress-count" id="step-count">1 / 20</span>
     </div>
-    <div class="form-group">
-      <label class="form-label">Correo electrónico *</label>
-      <input class="form-input" id="f-email" type="email" placeholder="correo@tuempresa.com">
-    </div>
-    <div class="form-group">
-      <label class="form-label">¿A qué se dedica tu empresa? <span class="opt-tag">(opcional)</span></label>
-      <input class="form-input" id="f-giro" type="text" placeholder="Ej: venta de ropa, restaurante, importación...">
-    </div>
-    <div class="form-group">
-      <label class="form-label">¿Cuántas personas trabajan contigo? <span class="opt-tag">(opcional)</span></label>
-      <select class="form-input" id="f-size">
-        <option value="">Selecciona si quieres...</option>
-        <option>Solo yo o mis socios</option>
-        <option>2 a 10 personas</option>
-        <option>11 a 50 personas</option>
-        <option>Más de 50 personas</option>
-      </select>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="form-group">
-      <span class="open-label">¿Quieres contarnos algo más? <span style="font-size:11px;color:var(--text-ter);font-weight:400">(opcional)</span></span>
-      <span class="open-sublabel">Si tienes una duda, algo que te preocupa, quieres que te contactemos por WhatsApp o simplemente quieres decirnos el nombre de tu negocio — este espacio es tuyo.</span>
-      <textarea class="open-box" id="f-open" placeholder='Escribe aquí lo que quieras... por ejemplo: "Me preocupa el tema del SAT", "Mi empresa se llama...", "Prefiero que me contacten al 55..."'></textarea>
-    </div>
-
-    <button class="btn-main" onclick="showResults()">Ver mi semáforo</button>
-    <p class="privacy-note">No compartimos tu información con terceros</p>
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:5%"></div></div>
   </div>
-
-  <!-- RESULTS -->
-  <div class="screen" id="s-results">
-    <h2 class="results-title">Tu semáforo empresarial</h2>
-    <div class="results-grid" id="results-grid"></div>
-    <div id="worst-box"></div>
-    <div class="cta-box">
-      <div class="cta-title">¿Qué sigue?</div>
-      <p>¿Quieres saber exactamente qué está causando cada color y qué deberías atender primero? El diagnóstico profundo de CLeaders te da un plan de acción concreto para tu empresa y situación específica.</p>
-      <a class="btn-gold" href="https://wa.me/525558712454?text=Hola%2C%20acab%C3%A9%20el%20diagn%C3%B3stico%20de%20sem%C3%A1foro%20y%20me%20interesa%20saber%20m%C3%A1s" target="_blank">
-        Quiero mi diagnóstico completo →
-      </a>
-    </div>
-    <p class="footer-note">
-      cleaders.com · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14777b7a607577607b5477787175707166673a777b79">[email&#160;protected]</a> · +52 55 5871 2454<br>
-      <span style="color:#c0cad8">CLeaders · Firma de arquitectura empresarial</span>
-    </p>
+  <div class="q-text" id="q-text"></div>
+  <div id="q-note-wrap"></div>
+  <div class="options" id="q-options"></div>
+  <div class="nav-row">
+    <button class="btn-back" id="btn-back" onclick="prevQ()" style="display:none">← Atrás</button>
+    <button class="btn-ghost" id="btn-skip" onclick="skipQ()" style="flex:1;margin-top:0">Omitir esta pregunta</button>
   </div>
+  <div class="skip-note" id="skip-note">Las preguntas omitidas no se puntúan y pueden afectar la precisión de tu resultado.</div>
+</div>
+
+<!-- FORM -->
+<div class="screen" id="s-form">
+  <span class="ready-badge">Diagnóstico completado</span>
+  <h2 class="form-title">Tu semáforo está listo</h2>
+  <p class="form-sub">Solo necesitamos dos datos para mostrarte los resultados y enviarte un resumen personalizado por correo.</p>
+  <div class="form-group">
+    <label class="form-label">Nombre completo *</label>
+    <input class="form-input" id="f-name" type="text" placeholder="Tu nombre">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Correo electrónico *</label>
+    <input class="form-input" id="f-email" type="email" placeholder="correo@tuempresa.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label">¿A qué se dedica tu empresa? <span class="opt-tag">(opcional)</span></label>
+    <input class="form-input" id="f-giro" type="text" placeholder="Ej: venta de ropa, restaurante, importación...">
+  </div>
+  <div class="form-group">
+    <label class="form-label">¿Cuántas personas trabajan contigo? <span class="opt-tag">(opcional)</span></label>
+    <select class="form-input" id="f-size">
+      <option value="">Selecciona si quieres...</option>
+      <option>Sólo yo ó mis socios y yo</option>
+      <option>2 a 10 personas</option>
+      <option>11 a 50 personas</option>
+      <option>Más de 50 personas</option>
+    </select>
+  </div>
+  <div class="divider"></div>
+  <div class="form-group">
+    <span class="open-label">¿Quieres contarnos algo más? <span style="font-size:11px;color:var(--text-ter);font-weight:400">(opcional)</span></span>
+    <span class="open-sublabel">Si tienes una duda, algo que te preocupa, quieres que te contactemos por WhatsApp o simplemente quieres decirnos el nombre de tu negocio — este espacio es tuyo.</span>
+    <textarea class="open-box" id="f-open" placeholder='Escribe aquí lo que quieras... por ejemplo: "Me preocupa el tema del SAT", "Mi empresa se llama...", "Prefiero que me contacten al 55..."'></textarea>
+  </div>
+  <button class="btn-main" onclick="showResults()">Ver mi semáforo</button>
+  <p class="privacy-note">No compartimos tu información con terceros</p>
+</div>
+
+<!-- RESULTS -->
+<div class="screen" id="s-results">
+  <h2 class="results-title">Tu semáforo empresarial</h2>
+  <div class="results-grid" id="results-grid"></div>
+  <div id="worst-box"></div>
+  <div class="cta-box">
+    <div class="cta-title">¿Qué sigue?</div>
+    <p>¿Quieres saber exactamente qué está causando cada color y qué deberías atender primero? El diagnóstico profundo de CLeaders te da un plan de acción concreto para tu empresa y situación específica.</p>
+    <a class="btn-gold" href="https://wa.me/525558712454?text=Hola%2C%20acab%C3%A9%20el%20diagn%C3%B3stico%20de%20sem%C3%A1foro%20y%20me%20interesa%20saber%20m%C3%A1s" target="_blank">Quiero mi diagnóstico completo →</a>
+  </div>
+  <p class="footer-note">cleaders.com · contacto@cleaders.com · +52 55 5871 2454<br><span style="color:#c0cad8">CLeaders · Firma de arquitectura empresarial</span></p>
+</div>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- Hidden iframe for Zoho Forms submission -->
+<iframe name="zoho_iframe" id="zoho_iframe" style="display:none"></iframe>
+
+<script>
 const AXES=[
   {label:'Situación fiscal',short:'Fiscal'},
   {label:'Operación y procesos',short:'Operación'},
@@ -663,10 +220,10 @@ const QS=[
 ];
 
 const COLORS=[
-  {label:'Verde',  hex:'#1a5c38', bg:'#e0f2e9', msg:'Bajo riesgo',     sub:'Bien gestionado'},
-  {label:'Amarillo',hex:'#7d5c00',bg:'#fef3c7', msg:'Riesgo moderado', sub:'Requiere atención'},
-  {label:'Naranja', hex:'#8a3010',bg:'#fde8dc', msg:'Riesgo alto',     sub:'Acción necesaria'},
-  {label:'Rojo',    hex:'#8b1c1c',bg:'#fee2e2', msg:'Riesgo crítico',  sub:'Urgente'}
+  {label:'Verde',hex:'#1a5c38',bg:'#e0f2e9',msg:'Bajo riesgo',sub:'Bien gestionado'},
+  {label:'Amarillo',hex:'#7d5c00',bg:'#fef3c7',msg:'Riesgo moderado',sub:'Requiere atención'},
+  {label:'Naranja',hex:'#8a3010',bg:'#fde8dc',msg:'Riesgo alto',sub:'Acción necesaria'},
+  {label:'Rojo',hex:'#8b1c1c',bg:'#fee2e2',msg:'Riesgo crítico',sub:'Urgente'}
 ];
 
 const MSGS=[
@@ -692,14 +249,12 @@ function renderQ(){
   const q=QS[current];
   document.getElementById('q-axis').textContent=AXES[q.axis].label;
   document.getElementById('q-text').textContent=q.text;
-  document.getElementById('q-note-wrap').innerHTML=q.note
-    ?`<div class="q-note">${q.note}</div>`:'';
+  document.getElementById('q-note-wrap').innerHTML=q.note?`<div class="q-note">${q.note}</div>`:'';
   document.getElementById('step-count').textContent=(current+1)+' / 20';
   document.getElementById('prog').style.width=((current+1)/20*100)+'%';
   document.getElementById('btn-back').style.display=current===0?'none':'block';
   document.getElementById('btn-skip').textContent=current===19?'Omitir y ver resultados':'Omitir esta pregunta';
   document.getElementById('skip-note').classList.remove('visible');
-
   const opts=document.getElementById('q-options');
   opts.innerHTML='';
   q.opts.forEach((o,i)=>{
@@ -716,9 +271,8 @@ function selectAndAdvance(i){
   document.querySelectorAll('.opt').forEach((b,idx)=>b.classList.toggle('selected',idx===i));
   setTimeout(()=>{
     if(current===19){show('s-form');return;}
-    current++;
-    renderQ();
-  }, 400);
+    current++;renderQ();
+  },400);
 }
 
 function skipQ(){
@@ -726,14 +280,11 @@ function skipQ(){
   document.getElementById('skip-note').classList.add('visible');
   setTimeout(()=>{
     if(current===19){show('s-form');return;}
-    current++;
-    renderQ();
-  }, 900);
+    current++;renderQ();
+  },900);
 }
 
-function prevQ(){
-  if(current>0){current--;renderQ();}
-}
+function prevQ(){if(current>0){current--;renderQ();}}
 
 function showResults(){
   const name=document.getElementById('f-name').value.trim();
@@ -744,51 +295,12 @@ function showResults(){
   }
   const giro=document.getElementById('f-giro').value.trim();
   const size=document.getElementById('f-size').value;
-  const open=document.getElementById('f-open').value.trim();
+  const openText=document.getElementById('f-open').value.trim();
+
   const axisScores=[0,0,0,0];
   QS.forEach((q,i)=>{if(answers[i]!==null)axisScores[q.axis]+=q.scores[answers[i]];});
-  // Submit to Zoho Forms
-  // Build form data with exact Zoho field names
-  const zohoForm = document.createElement('form');
-  zohoForm.method = 'POST';
-  zohoForm.action = 'https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit';
-  zohoForm.target = 'zoho_hidden_frame';
-  zohoForm.style.display = 'none';
 
-  const nameParts = name.split(' ');
-  const firstName = nameParts[0] || name;
-  const lastName = nameParts.slice(1).join(' ') || '-';
-
-  const fields = {
-    'Name_First': firstName,
-    'Name_Last': lastName,
-    'Email': email,
-    'SingleLine': giro || 'No indicado',
-    'Dropdown': size || 'No indicado',
-    'MultiLine': (open || 'Sin comentarios') + ' | Riesgo: Fiscal=' + axisScores[0] + '/15 Operacion=' + axisScores[1] + '/15 Internacional=' + axisScores[2] + '/15 Organizacion=' + axisScores[3] + '/15'
-  };
-
-  Object.entries(fields).forEach(([key, val]) => {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = val;
-    zohoForm.appendChild(input);
-  });
-
-  // Hidden iframe to avoid page redirect
-  if (!document.getElementById('zoho_hidden_frame')) {
-    const iframe = document.createElement('iframe');
-    iframe.name = 'zoho_hidden_frame';
-    iframe.id = 'zoho_hidden_frame';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-  }
-
-  document.body.appendChild(zohoForm);
-  zohoForm.submit();
-  setTimeout(() => { if (zohoForm.parentNode) zohoForm.parentNode.removeChild(zohoForm); }, 3000);
-
+  // Build results UI
   const grid=document.getElementById('results-grid');
   grid.innerHTML='';
   let worstAxis=0,worstScore=-1;
@@ -798,21 +310,64 @@ function showResults(){
     const card=document.createElement('div');
     card.className='result-card';
     card.style.borderColor=col.hex;
-    card.innerHTML=`
-      <div class="r-axis">${AXES[i].short}</div>
-      <div class="r-dot" style="background:${col.hex}"></div>
-      <div class="r-status" style="color:${col.hex}">${col.msg}</div>
-      <div class="r-score">${col.label} · ${s}/15 pts</div>
-    `;
+    card.innerHTML=`<div class="r-axis">${AXES[i].short}</div><div class="r-dot" style="background:${col.hex}"></div><div class="r-status" style="color:${col.hex}">${col.msg}</div><div class="r-score">${col.label} · ${s}/15 pts</div>`;
     grid.appendChild(card);
   });
 
   const wc=COLORS[getColor(worstScore)];
   const giroText=giro?` Esto aplica especialmente para empresas en el giro de <strong>${giro}</strong>.`:'';
-  const skipMsg=skipped>0
-    ?`<div style="font-size:11px;color:var(--text-ter);margin-bottom:12px;padding:8px 12px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow)">Omitiste ${skipped} pregunta${skipped>1?'s':''} — tu resultado puede ser menos preciso en esa${skipped>1?'s':''} área${skipped>1?'s':''}.</div>`:'';
+  const skipMsg=skipped>0?`<div style="font-size:11px;margin-bottom:12px;padding:8px 12px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow)">Omitiste ${skipped} pregunta${skipped>1?'s':''} — tu resultado puede ser menos preciso en esa${skipped>1?'s':''} área${skipped>1?'s':''}.</div>`:'';
 
   document.getElementById('worst-box').innerHTML=`
     ${skipMsg}
     <div class="worst-box" style="background:${wc.bg};border-color:${wc.hex}">
-  
+      <div class="worst-title" style="color:${wc.hex}">Área más crítica: ${AXES[worstAxis].label}</div>
+      <div class="worst-msg">${MSGS[worstAxis]}${giroText}</div>
+    </div>`;
+
+  // Show results first
+  show('s-results');
+
+  // Then submit to Zoho Forms silently after 600ms
+  setTimeout(()=>submitToZoho(name, email, giro, size, openText, axisScores), 600);
+}
+
+function submitToZoho(name, email, giro, size, openText, axisScores){
+  try {
+    const nameParts = name.trim().split(' ');
+    const firstName = nameParts[0] || name;
+    const lastName = nameParts.slice(1).join(' ') || '-';
+
+    const zohoForm = document.createElement('form');
+    zohoForm.method = 'POST';
+    zohoForm.action = 'https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit';
+    zohoForm.target = 'zoho_iframe';
+    zohoForm.style.display = 'none';
+
+    const fields = {
+      'Name_First': firstName,
+      'Name_Last': lastName,
+      'Email': email,
+      'SingleLine': giro || 'No indicado',
+      'Dropdown': size || 'No indicado',
+      'MultiLine': (openText || 'Sin comentarios') + ' | Scores: Fiscal=' + axisScores[0] + '/15 Operacion=' + axisScores[1] + '/15 Internacional=' + axisScores[2] + '/15 Organizacion=' + axisScores[3] + '/15'
+    };
+
+    Object.entries(fields).forEach(([key, val]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = val;
+      zohoForm.appendChild(input);
+    });
+
+    document.body.appendChild(zohoForm);
+    zohoForm.submit();
+    setTimeout(()=>{ if(zohoForm.parentNode) zohoForm.parentNode.removeChild(zohoForm); }, 5000);
+  } catch(e) {
+    console.log('Zoho submit error:', e);
+  }
+}
+</script>
+</body>
+</html>
