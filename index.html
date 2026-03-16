@@ -5,93 +5,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagnóstico Empresarial Gratuito · CLeaders</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#28367B;--navy-light:#3a4d99;--navy-dark:#1e2a61;--gray:#4C4C4F;--blue-light:#A6BBCD;--blue-pale:#e8eff4;--cream:#f5f7fa;--white:#ffffff;--border:#dde3e8;--text:#1e2435;--text-sec:#4C4C4F;--text-ter:#8a909d;--green:#1a5c38;--green-bg:#e0f2e9;--yellow:#7d5c00;--yellow-bg:#fef3c7;--orange:#8a3010;--orange-bg:#fde8dc;--red:#8b1c1c;--red-bg:#fee2e2;--radius:14px;--radius-sm:8px;}
+:root{
+  --navy:#28367B;--navy-light:#3a4d99;--blue-light:#A6BBCD;
+  --blue-pale:#e8eff4;--cream:#f5f7fa;--white:#ffffff;
+  --border:#dde3e8;--text:#1e2435;--text-sec:#4C4C4F;--text-ter:#8a909d;
+  --green:#1a5c38;--green-bg:#e0f2e9;--yellow:#7d5c00;--yellow-bg:#fef3c7;
+  --orange:#8a3010;--orange-bg:#fde8dc;--red:#8b1c1c;--red-bg:#fee2e2;
+  --radius:14px;--radius-sm:8px;
+}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 80px;}
-.container{width:100%;max-width:560px;}
+body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px 80px;}
+.container{width:100%;max-width:580px;}
+
+/* LOGO BAR */
 .logo-bar{display:flex;align-items:center;gap:14px;margin-bottom:44px;}
-.logo-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase;}
-.logo-tagline{font-size:9px;font-weight:600;color:var(--blue-light);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
+.logo-img{height:38px;width:auto;}
 .logo-divider{width:1px;height:28px;background:var(--border);margin-left:4px;}
-.logo-context{font-size:11px;color:var(--text-ter);letter-spacing:.05em;}
+.logo-context{font-size:11px;color:var(--text-ter);letter-spacing:.05em;font-family:'Poppins',sans-serif;}
+
+/* SCREENS */
 .screen{display:none;}.screen.active{display:block;animation:fadeUp .28s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* INTRO */
 .lights{display:flex;gap:8px;margin-bottom:28px;}
 .light{width:14px;height:14px;border-radius:50%;}
-.display{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;line-height:1.18;color:var(--navy);letter-spacing:-.3px;margin-bottom:16px;}
-.body-lg{font-size:15px;color:var(--text-sec);line-height:1.75;margin-bottom:28px;}
+.display{font-family:'Montserrat',sans-serif;font-size:32px;font-weight:700;line-height:1.2;color:var(--navy);margin-bottom:16px;}
+.body-lg{font-size:15px;color:var(--text-sec);line-height:1.75;margin-bottom:28px;font-family:'Poppins',sans-serif;}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px;}
-.chip{font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--white);color:var(--navy);border:1px solid var(--blue-pale);letter-spacing:.01em;}
-.btn-main{display:block;width:100%;padding:16px;background:var(--navy);color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:background .2s,transform .1s;letter-spacing:.02em;}
+.chip{font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--white);color:var(--navy);border:1px solid var(--blue-pale);font-family:'Poppins',sans-serif;}
+
+/* BUTTONS */
+.btn-main{display:block;width:100%;padding:16px;background:var(--navy);color:var(--white);font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:background .2s;letter-spacing:.03em;text-transform:uppercase;}
 .btn-main:hover{background:var(--navy-light);}
-.btn-main:active{transform:scale(.99);}
-.btn-ghost{display:block;width:100%;padding:12px;background:transparent;color:var(--text-sec);font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:400;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;margin-top:10px;text-align:center;}
+.btn-ghost{display:block;width:100%;padding:12px;background:transparent;color:var(--text-sec);font-family:'Poppins',sans-serif;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;margin-top:10px;text-align:center;}
 .btn-ghost:hover{background:var(--white);}
-.btn-back{padding:12px 18px;background:transparent;color:var(--text-sec);font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:400;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.btn-back{padding:12px 18px;background:transparent;color:var(--text-sec);font-family:'Poppins',sans-serif;font-size:13px;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;white-space:nowrap;}
 .btn-back:hover{background:var(--white);}
 .privacy-note{font-size:11px;color:var(--text-ter);text-align:center;margin-top:14px;line-height:1.6;}
+
+/* PROGRESS */
 .progress-wrap{margin-bottom:28px;}
 .progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.progress-axis{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);}
+.progress-axis{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);font-family:'Montserrat',sans-serif;}
 .progress-count{font-size:12px;color:var(--text-ter);}
-.progress-bar{height:2px;background:var(--blue-pale);border-radius:2px;overflow:hidden;}
+.progress-bar{height:3px;background:var(--blue-pale);border-radius:2px;overflow:hidden;}
 .progress-fill{height:100%;background:var(--navy);border-radius:2px;transition:width .45s ease;}
-.q-text{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;line-height:1.38;color:var(--navy);margin-bottom:10px;}
-.q-note{font-size:13px;color:var(--text-ter);line-height:1.65;margin-bottom:22px;padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius-sm);border-left:3px solid var(--blue-light);}
+
+/* QUESTION */
+.q-text{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:600;line-height:1.38;color:var(--navy);margin-bottom:10px;}
+.q-note{font-size:12px;color:var(--text-ter);line-height:1.65;margin-bottom:22px;padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius-sm);border-left:3px solid var(--blue-light);}
 .options{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.opt{padding:14px 18px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;color:var(--text);cursor:pointer;transition:all .18s;background:var(--white);text-align:left;line-height:1.45;font-family:'Nunito Sans',sans-serif;font-weight:400;position:relative;}
+.opt{padding:14px 18px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;color:var(--text);cursor:pointer;transition:all .18s;background:var(--white);text-align:left;line-height:1.45;font-family:'Poppins',sans-serif;position:relative;}
 .opt:hover{border-color:var(--navy);background:var(--blue-pale);}
-.opt.selected{border-color:var(--navy);background:var(--navy);color:var(--white);font-weight:600;}
+.opt.selected{border-color:var(--navy);background:var(--navy);color:var(--white);font-weight:500;}
 .opt.selected::after{content:'✓';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--blue-light);}
-.skip-note{font-size:11px;text-align:center;margin-top:8px;line-height:1.5;padding:6px 10px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow);display:none;}
+.skip-note{font-size:11px;text-align:center;margin-top:8px;padding:6px 10px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow);display:none;}
 .skip-note.visible{display:block;}
 .nav-row{display:flex;gap:10px;align-items:stretch;}
-.ready-badge{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:4px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:.04em;text-transform:uppercase;}
-.form-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--navy);margin-bottom:6px;}
-.form-sub{font-size:14px;color:var(--text-sec);line-height:1.65;margin-bottom:28px;}
-.form-group{margin-bottom:16px;}
-.form-label{display:block;font-size:13px;font-weight:600;color:var(--text-sec);margin-bottom:6px;}
-.form-label .opt-tag{font-weight:400;color:var(--text-ter);font-size:12px;margin-left:4px;}
-.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Nunito Sans',sans-serif;background:var(--white);color:var(--text);transition:border-color .2s;}
-.form-input:focus{outline:none;border-color:var(--navy);}
-.divider{border:none;border-top:1px solid var(--border);margin:24px 0;}
-.open-label{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
-.open-sublabel{display:block;font-size:12px;color:var(--text-ter);line-height:1.65;margin-bottom:10px;}
-.open-box{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:'Nunito Sans',sans-serif;background:var(--white);color:var(--text);min-height:96px;resize:none;line-height:1.6;transition:border-color .2s;}
-.open-box:focus{outline:none;border-color:var(--navy);}
-.open-box::placeholder{color:var(--text-ter);}
-.results-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--navy);margin-bottom:20px;}
+
+/* ZOHO FORM SCREEN */
+.form-header{margin-bottom:20px;}
+.ready-badge{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:var(--green-bg);padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase;font-family:'Montserrat',sans-serif;}
+.form-title{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.form-sub{font-size:14px;color:var(--text-sec);line-height:1.65;}
+.zoho-wrapper{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-top:16px;}
+
+/* RESULTS */
+.results-title{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:20px;}
 .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
 .result-card{padding:16px;border-radius:var(--radius);background:var(--white);border:1.5px solid var(--border);}
-.r-axis{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-ter);margin-bottom:10px;}
+.r-axis{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-ter);margin-bottom:10px;font-family:'Montserrat',sans-serif;}
 .r-dot{width:30px;height:30px;border-radius:50%;margin-bottom:10px;}
-.r-status{font-size:14px;font-weight:600;margin-bottom:3px;}
+.r-status{font-size:14px;font-weight:600;margin-bottom:3px;font-family:'Montserrat',sans-serif;}
 .r-score{font-size:11px;color:var(--text-ter);}
 .worst-box{padding:16px 18px;border-radius:var(--radius);margin-bottom:20px;border-left:4px solid;}
-.worst-title{font-size:14px;font-weight:600;margin-bottom:6px;}
+.worst-title{font-size:14px;font-weight:600;margin-bottom:6px;font-family:'Montserrat',sans-serif;}
 .worst-msg{font-size:13px;line-height:1.65;color:var(--text-sec);}
 .cta-box{padding:22px;background:var(--navy);border-radius:var(--radius);margin-top:8px;}
-.cta-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--white);margin-bottom:8px;}
+.cta-title{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px;}
 .cta-box p{font-size:13px;color:rgba(166,187,205,.9);line-height:1.65;margin-bottom:18px;}
-.btn-gold{display:block;width:100%;padding:14px;background:var(--blue-light);color:var(--navy-dark);font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s;text-decoration:none;text-align:center;letter-spacing:.01em;}
+.btn-gold{display:block;width:100%;padding:14px;background:var(--blue-light);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;text-decoration:none;text-align:center;letter-spacing:.03em;text-transform:uppercase;}
 .btn-gold:hover{background:#c0d4e4;}
 .footer-note{font-size:11px;color:var(--text-ter);text-align:center;margin-top:28px;line-height:1.8;}
-.skip-warning{font-size:11px;color:var(--text-ter);text-align:center;margin-top:6px;}
-@media(max-width:480px){.display{font-size:27px;}.q-text{font-size:21px;}}
+
+@media(max-width:480px){.display{font-size:26px;}.q-text{font-size:19px;}}
 </style>
 </head>
 <body>
 <div class="container">
 
+<!-- LOGO -->
 <div class="logo-bar">
-  <div>
-    <div class="logo-name">CLeaders</div>
-    <div class="logo-tagline">Consulting for Leaders</div>
+  <img src="https://www.cleaders.com/Imagen%201.png" alt="CLeaders" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+  <div style="display:none">
+    <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:var(--navy);letter-spacing:.06em;">CLEADERS</div>
+    <div style="font-size:9px;font-weight:600;color:var(--blue-light);letter-spacing:.14em;text-transform:uppercase;">CONSULTING FOR LEADERS</div>
   </div>
   <div class="logo-divider"></div>
-  <span class="logo-context">Diagnóstico empresarial</span>
+  <span class="logo-context">Diagnóstico empresarial gratuito</span>
 </div>
 
 <!-- INTRO -->
@@ -103,7 +117,7 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--te
     <div class="light" style="background:#b91c1c"></div>
   </div>
   <h1 class="display">¿Sabes en qué nivel de riesgo opera tu empresa?</h1>
-  <p class="body-lg">20 preguntas simples, menos de 5 minutos. Sin tecnicismos. Al final ves un semáforo con el nivel de riesgo real de tu negocio en 4 áreas críticas — y es completamente gratis.</p>
+  <p class="body-lg">20 preguntas simples, menos de 5 minutos. Sin tecnicismos. Al final ves un semáforo con el nivel de riesgo real de tu negocio en 4 áreas críticas — completamente gratis.</p>
   <div class="chips">
     <span class="chip">Situación fiscal</span>
     <span class="chip">Operación y procesos</span>
@@ -130,44 +144,27 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--te
     <button class="btn-back" id="btn-back" onclick="prevQ()" style="display:none">← Atrás</button>
     <button class="btn-ghost" id="btn-skip" onclick="skipQ()" style="flex:1;margin-top:0">Omitir esta pregunta</button>
   </div>
-  <div class="skip-note" id="skip-note">Las preguntas omitidas no se puntúan y pueden afectar la precisión de tu resultado.</div>
+  <div class="skip-note" id="skip-note">Las preguntas omitidas pueden afectar la precisión de tu resultado.</div>
 </div>
 
-<!-- FORM -->
+<!-- ZOHO FORM -->
 <div class="screen" id="s-form">
-  <span class="ready-badge">Diagnóstico completado</span>
-  <h2 class="form-title">Tu semáforo está listo</h2>
-  <p class="form-sub">Solo necesitamos dos datos para mostrarte los resultados y enviarte un resumen personalizado por correo.</p>
-  <div class="form-group">
-    <label class="form-label">Nombre completo *</label>
-    <input class="form-input" id="f-name" type="text" placeholder="Tu nombre">
+  <div class="form-header">
+    <span class="ready-badge">¡Diagnóstico completado!</span>
+    <h2 class="form-title">Tu semáforo está listo</h2>
+    <p class="form-sub">Déjanos tus datos para mostrarte los resultados y enviarte un resumen por correo.</p>
   </div>
-  <div class="form-group">
-    <label class="form-label">Correo electrónico *</label>
-    <input class="form-input" id="f-email" type="email" placeholder="correo@tuempresa.com">
+  <div class="zoho-wrapper">
+    <iframe
+      aria-label='Diagnóstico CLeaders'
+      frameborder="0"
+      style="height:420px;width:100%;border:none;"
+      id="zoho-form-iframe"
+      src='https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU'>
+    </iframe>
   </div>
-  <div class="form-group">
-    <label class="form-label">¿A qué se dedica tu empresa? <span class="opt-tag">(opcional)</span></label>
-    <input class="form-input" id="f-giro" type="text" placeholder="Ej: venta de ropa, restaurante, importación...">
-  </div>
-  <div class="form-group">
-    <label class="form-label">¿Cuántas personas trabajan contigo? <span class="opt-tag">(opcional)</span></label>
-    <select class="form-input" id="f-size">
-      <option value="">Selecciona si quieres...</option>
-      <option>Sólo yo ó mis socios y yo</option>
-      <option>2 a 10 personas</option>
-      <option>11 a 50 personas</option>
-      <option>Más de 50 personas</option>
-    </select>
-  </div>
-  <div class="divider"></div>
-  <div class="form-group">
-    <span class="open-label">¿Quieres contarnos algo más? <span style="font-size:11px;color:var(--text-ter);font-weight:400">(opcional)</span></span>
-    <span class="open-sublabel">Si tienes una duda, algo que te preocupa, quieres que te contactemos por WhatsApp o simplemente quieres decirnos el nombre de tu negocio — este espacio es tuyo.</span>
-    <textarea class="open-box" id="f-open" placeholder='Escribe aquí lo que quieras... por ejemplo: "Me preocupa el tema del SAT", "Mi empresa se llama...", "Prefiero que me contacten al 55..."'></textarea>
-  </div>
-  <button class="btn-main" onclick="showResults()">Ver mi semáforo</button>
-  <p class="privacy-note">No compartimos tu información con terceros</p>
+  <p style="font-size:11px;color:var(--text-ter);text-align:center;margin-top:10px;">Al enviar tus datos verás tu semáforo de resultados</p>
+  <button class="btn-ghost" onclick="showResults()" style="margin-top:16px">Ya envié mis datos → Ver mi semáforo</button>
 </div>
 
 <!-- RESULTS -->
@@ -177,8 +174,8 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--te
   <div id="worst-box"></div>
   <div class="cta-box">
     <div class="cta-title">¿Qué sigue?</div>
-    <p>¿Quieres saber exactamente qué está causando cada color y qué deberías atender primero? El diagnóstico profundo de CLeaders te da un plan de acción concreto para tu empresa y situación específica.</p>
-    <a class="btn-gold" href="https://wa.me/525558712454?text=Hola%2C%20acab%C3%A9%20el%20diagn%C3%B3stico%20de%20sem%C3%A1foro%20y%20me%20interesa%20saber%20m%C3%A1s" target="_blank">Quiero mi diagnóstico completo →</a>
+    <p>¿Quieres saber exactamente qué está causando cada color y qué deberías atender primero? El diagnóstico profundo de CLeaders te da un plan de acción concreto para tu empresa.</p>
+    <a class="btn-gold" href="https://wa.me/525558712454?text=Hola%2C%20acab%C3%A9%20el%20diagn%C3%B3stico%20y%20me%20interesa%20el%20diagn%C3%B3stico%20profundo" target="_blank">Quiero mi diagnóstico completo →</a>
   </div>
   <p class="footer-note">cleaders.com · contacto@cleaders.com · +52 55 5871 2454<br><span style="color:#c0cad8">CLeaders · Firma de arquitectura empresarial</span></p>
 </div>
@@ -186,10 +183,11 @@ body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--te
 </div>
 
 <script>
-window.onerror = function(msg, src, line, col, err) {
-  document.body.innerHTML = '<div style="padding:20px;color:red;font-family:sans-serif"><strong>Error:</strong> ' + msg + ' (line ' + line + ')</div>';
+window.onerror=function(msg,src,line){
+  console.error('Error:',msg,'line:',line);
   return true;
 };
+
 const AXES=[
   {label:'Situación fiscal',short:'Fiscal'},
   {label:'Operación y procesos',short:'Operación'},
@@ -205,7 +203,7 @@ const QS=[
   {axis:0,text:'¿El tipo de empresa que tienes registrada sigue siendo el más conveniente para lo que haces hoy?',note:'Por ejemplo: ¿sigues en el mismo régimen de cuando empezaste aunque tu empresa ya creció?',opts:['Sí, lo hemos revisado y está optimizado','Creemos que sí pero nunca lo hemos revisado','Tenemos dudas al respecto','No, sabemos que ya no es el más adecuado'],scores:[0,1,2,3]},
   {axis:1,text:'Si mañana uno de tus empleados más importantes no puede venir, ¿alguien más sabe hacer su trabajo?',note:null,opts:['Sí, tenemos sustitutos y todo está documentado','Podríamos salir adelante con algo de esfuerzo','Sería un problema serio pero resoluble','La operación se detendría o se afectaría mucho'],scores:[0,1,2,3]},
   {axis:1,text:'¿Sabes cuánto dinero pierde o desperdicia tu empresa cada mes en tiempo, errores o procesos repetidos?',note:null,opts:['Sí, lo medimos y trabajamos para reducirlo','Tenemos una idea general pero sin números precisos','Lo intuimos pero nunca lo hemos medido','No lo sabemos'],scores:[0,1,2,3]},
-  {axis:1,text:'¿Los pasos para hacer las cosas en tu empresa están escritos en algún lado — o todo vive en la cabeza de las personas?',note:'Nos referimos a cómo se atiende a un cliente, cómo se hace un pedido, cómo se cobra, etc.',opts:['Sí, los procesos principales están documentados y se siguen','Algunos sí, pero muchos dependen de quien los hace','La mayoría vive en la memoria de las personas','No hay nada escrito'],scores:[0,1,2,3]},
+  {axis:1,text:'¿Los pasos para hacer las cosas en tu empresa están escritos en algún lado — o todo vive en la cabeza de las personas?',note:'Nos referimos a cómo se atiende a un cliente, cómo se hace un pedido, cómo se cobro, etc.',opts:['Sí, los procesos principales están documentados y se siguen','Algunos sí, pero muchos dependen de quien los hace','La mayoría vive en la memoria de las personas','No hay nada escrito'],scores:[0,1,2,3]},
   {axis:1,text:'¿Con qué frecuencia revisas los números de tu empresa — ventas, gastos, ganancias?',note:'No hablamos de estados financieros formales, sino de saber cómo va tu empresa en números reales.',opts:['Todos los meses con detalle','Cada dos o tres meses','Solo cuando el contador entrega algo o hay un problema','Casi nunca o solo a fin de año'],scores:[0,1,2,3]},
   {axis:1,text:'¿Usas algún sistema o programa para llevar el control de tu negocio?',note:null,opts:['Sí, un sistema integrado que todo el equipo usa','Tenemos algo pero no se usa de forma consistente','Solo Excel y correo electrónico','No usamos ningún sistema'],scores:[0,1,2,3]},
   {axis:2,text:'¿Tu empresa vende o ha intentado vender algo fuera de México?',note:null,opts:['Sí, tenemos clientes o socios en el extranjero','Lo hemos intentado pero sin resultados concretos','Lo hemos considerado pero no hemos dado ningún paso','No, solo operamos en México y no está en nuestros planes'],scores:[0,2,1,0]},
@@ -221,10 +219,10 @@ const QS=[
 ];
 
 const COLORS=[
-  {label:'Verde',hex:'#1a5c38',bg:'#e0f2e9',msg:'Bajo riesgo',sub:'Bien gestionado'},
-  {label:'Amarillo',hex:'#7d5c00',bg:'#fef3c7',msg:'Riesgo moderado',sub:'Requiere atención'},
-  {label:'Naranja',hex:'#8a3010',bg:'#fde8dc',msg:'Riesgo alto',sub:'Acción necesaria'},
-  {label:'Rojo',hex:'#8b1c1c',bg:'#fee2e2',msg:'Riesgo crítico',sub:'Urgente'}
+  {label:'Verde',hex:'#1a5c38',bg:'#e0f2e9',msg:'Bajo riesgo'},
+  {label:'Amarillo',hex:'#7d5c00',bg:'#fef3c7',msg:'Riesgo moderado'},
+  {label:'Naranja',hex:'#8a3010',bg:'#fde8dc',msg:'Riesgo alto'},
+  {label:'Rojo',hex:'#8b1c1c',bg:'#fee2e2',msg:'Riesgo crítico'}
 ];
 
 const MSGS=[
@@ -235,6 +233,7 @@ const MSGS=[
 ];
 
 let current=0, answers=new Array(20).fill(null), skipped=0;
+let axisScoresGlobal=[0,0,0,0];
 
 function getColor(s){if(s<=3)return 0;if(s<=6)return 1;if(s<=9)return 2;return 3;}
 
@@ -254,7 +253,7 @@ function renderQ(){
   document.getElementById('step-count').textContent=(current+1)+' / 20';
   document.getElementById('prog').style.width=((current+1)/20*100)+'%';
   document.getElementById('btn-back').style.display=current===0?'none':'block';
-  document.getElementById('btn-skip').textContent=current===19?'Omitir y ver resultados':'Omitir esta pregunta';
+  document.getElementById('btn-skip').textContent=current===19?'Omitir y continuar':'Omitir esta pregunta';
   document.getElementById('skip-note').classList.remove('visible');
   const opts=document.getElementById('q-options');
   opts.innerHTML='';
@@ -271,7 +270,7 @@ function selectAndAdvance(i){
   answers[current]=i;
   document.querySelectorAll('.opt').forEach((b,idx)=>b.classList.toggle('selected',idx===i));
   setTimeout(()=>{
-    if(current===19){show('s-form');return;}
+    if(current===19){calcScores();show('s-form');return;}
     current++;renderQ();
   },400);
 }
@@ -280,32 +279,25 @@ function skipQ(){
   skipped++;
   document.getElementById('skip-note').classList.add('visible');
   setTimeout(()=>{
-    if(current===19){show('s-form');return;}
+    if(current===19){calcScores();show('s-form');return;}
     current++;renderQ();
   },900);
 }
 
 function prevQ(){if(current>0){current--;renderQ();}}
 
+function calcScores(){
+  axisScoresGlobal=[0,0,0,0];
+  QS.forEach((q,i)=>{
+    if(answers[i]!==null) axisScoresGlobal[q.axis]+=q.scores[answers[i]];
+  });
+}
+
 function showResults(){
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  if(!name||!email){
-    alert('Solo necesitamos tu nombre y correo para mostrarte los resultados.');
-    return;
-  }
-  const giro=document.getElementById('f-giro').value.trim();
-  const size=document.getElementById('f-size').value;
-  const openText=document.getElementById('f-open').value.trim();
-
-  const axisScores=[0,0,0,0];
-  QS.forEach((q,i)=>{if(answers[i]!==null)axisScores[q.axis]+=q.scores[answers[i]];});
-
-  // Build results UI
   const grid=document.getElementById('results-grid');
   grid.innerHTML='';
   let worstAxis=0,worstScore=-1;
-  axisScores.forEach((s,i)=>{
+  axisScoresGlobal.forEach((s,i)=>{
     const c=getColor(s),col=COLORS[c];
     if(s>worstScore){worstScore=s;worstAxis=i;}
     const card=document.createElement('div');
@@ -314,56 +306,15 @@ function showResults(){
     card.innerHTML=`<div class="r-axis">${AXES[i].short}</div><div class="r-dot" style="background:${col.hex}"></div><div class="r-status" style="color:${col.hex}">${col.msg}</div><div class="r-score">${col.label} · ${s}/15 pts</div>`;
     grid.appendChild(card);
   });
-
   const wc=COLORS[getColor(worstScore)];
-  const giroText=giro?` Esto aplica especialmente para empresas en el giro de <strong>${giro}</strong>.`:'';
-  const skipMsg=skipped>0?`<div style="font-size:11px;margin-bottom:12px;padding:8px 12px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow)">Omitiste ${skipped} pregunta${skipped>1?'s':''} — tu resultado puede ser menos preciso en esa${skipped>1?'s':''} área${skipped>1?'s':''}.</div>`:'';
-
+  const skipMsg=skipped>0?`<div style="font-size:11px;margin-bottom:12px;padding:8px 12px;background:var(--yellow-bg);border-radius:var(--radius-sm);color:var(--yellow)">Omitiste ${skipped} pregunta${skipped>1?'s':''} — tu resultado puede ser menos preciso.</div>`:'';
   document.getElementById('worst-box').innerHTML=`
     ${skipMsg}
     <div class="worst-box" style="background:${wc.bg};border-color:${wc.hex}">
       <div class="worst-title" style="color:${wc.hex}">Área más crítica: ${AXES[worstAxis].label}</div>
-      <div class="worst-msg">${MSGS[worstAxis]}${giroText}</div>
+      <div class="worst-msg">${MSGS[worstAxis]}</div>
     </div>`;
-
-  // Show results first
   show('s-results');
-
-  // Then submit to Zoho Forms silently after 600ms
-  setTimeout(()=>submitToZoho(name, email, giro, size, openText, axisScores), 600);
-}
-
-function submitToZoho(name, email, giro, size, openText, axisScores){
-  try {
-    const nameParts = name.trim().split(' ');
-    const firstName = nameParts[0] || name;
-    const lastName = nameParts.slice(1).join(' ') || '-';
-
-    const scoresSummary = 'Fiscal=' + axisScores[0] + '/15 | Operacion=' + axisScores[1] + '/15 | Internacional=' + axisScores[2] + '/15 | Organizacion=' + axisScores[3] + '/15';
-    const fullComment = (openText || 'Sin comentarios') + ' || SCORES: ' + scoresSummary;
-
-    const params = new URLSearchParams();
-    params.append('Name_First', firstName);
-    params.append('Name_Last', lastName);
-    params.append('Email', email);
-    params.append('SingleLine', giro || 'No indicado');
-    params.append('Dropdown', size || 'No indicado');
-    params.append('MultiLine', fullComment);
-
-    fetch('https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU/htmlRecords/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
-      mode: 'no-cors'
-    }).then(() => {
-      console.log('Zoho: enviado');
-    }).catch(e => {
-      console.log('Zoho fetch error:', e);
-    });
-
-  } catch(e) {
-    console.log('Zoho submit error:', e);
-  }
 }
 </script>
 </body>
