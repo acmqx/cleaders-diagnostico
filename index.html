@@ -90,6 +90,10 @@ body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--text);
 .btn-gold{display:block;width:100%;padding:14px;background:var(--blue-light);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;text-decoration:none;text-align:center;letter-spacing:.03em;text-transform:uppercase;}
 .btn-gold:hover{background:#c0d4e4;}
 .footer-note{font-size:11px;color:var(--text-ter);text-align:center;margin-top:28px;line-height:1.8;}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--text-sec);margin-bottom:6px;font-family:'Montserrat',sans-serif;}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Poppins',sans-serif;background:var(--white);color:var(--text);transition:border-color .2s;}
+.form-input:focus{outline:none;border-color:var(--navy);}
 
 @media(max-width:480px){.display{font-size:26px;}.q-text{font-size:19px;}}
 </style>
@@ -147,35 +151,43 @@ body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--text);
   <div class="skip-note" id="skip-note">Las preguntas omitidas pueden afectar la precisión de tu resultado.</div>
 </div>
 
-<!-- ZOHO FORM -->
+<!-- FORM -->
 <div class="screen" id="s-form">
-  <div class="form-header">
-    <span class="ready-badge">¡Diagnóstico completado!</span>
-    <h2 class="form-title">Tu semáforo está listo</h2>
-    <p class="form-sub">Déjanos tus datos para mostrarte los resultados y enviarte un resumen por correo.</p>
+  <span class="ready-badge">¡Diagnóstico completado!</span>
+  <h2 class="form-title">Tu semáforo está listo</h2>
+  <p class="form-sub" style="margin-bottom:24px;">Déjanos tus datos para mostrarte los resultados y enviarte un resumen por correo.</p>
+
+  <div class="form-group">
+    <label class="form-label">Nombre completo *</label>
+    <input class="form-input" id="f-name" type="text" placeholder="Tu nombre">
   </div>
-  <div class="zoho-wrapper">
-    <iframe
-      aria-label='Diagnóstico CLeaders'
-      frameborder="0"
-      style="height:420px;width:100%;border:none;"
-      id="zoho-form-iframe"
-      src='https://forms.zohopublic.com/cleaders1/form/DiagnsticoCLeaders/formperma/jAIozQ9fyySkCkHlvvShV06_td-XTCi_S7nakRz6-yU'>
-    </iframe>
+  <div class="form-group">
+    <label class="form-label">Correo electrónico *</label>
+    <input class="form-input" id="f-email" type="email" placeholder="correo@tuempresa.com">
   </div>
-  <div style="margin-top:20px;padding:16px;background:var(--blue-pale);border-radius:var(--radius);border-left:3px solid var(--navy);">
-    <p style="font-size:13px;color:var(--navy);font-weight:600;margin-bottom:8px;font-family:'Montserrat',sans-serif;">Confirma tu correo para ver los resultados</p>
-    <p style="font-size:12px;color:var(--text-sec);margin-bottom:12px;">Escribe el mismo correo que pusiste en el formulario de arriba.</p>
-    <input 
-      type="email" 
-      id="confirm-email" 
-      placeholder="tucorreo@empresa.com"
-      style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:'Poppins',sans-serif;background:var(--white);color:var(--text);margin-bottom:10px;"
-      oninput="document.getElementById('confirm-email').style.borderColor='var(--border)'"
-    >
-    <p id="email-error" style="font-size:11px;color:var(--red);margin-bottom:8px;display:none;">Por favor escribe un correo válido para continuar.</p>
-    <button class="btn-main" onclick="validateAndShow()" style="font-size:13px;padding:13px;">Ver mi semáforo →</button>
+  <div class="form-group">
+    <label class="form-label">¿A qué se dedica tu empresa? <span style="font-weight:400;color:var(--text-ter);font-size:12px;">(opcional)</span></label>
+    <input class="form-input" id="f-giro" type="text" placeholder="Ej: comercio, manufactura, servicios...">
   </div>
+  <div class="form-group">
+    <label class="form-label">¿Cuántas personas trabajan contigo? <span style="font-weight:400;color:var(--text-ter);font-size:12px;">(opcional)</span></label>
+    <select class="form-input" id="f-size">
+      <option value="">Selecciona...</option>
+      <option>Solo yo o mis socios</option>
+      <option>2 a 10 personas</option>
+      <option>11 a 50 personas</option>
+      <option>Más de 50 personas</option>
+    </select>
+  </div>
+  <div style="border-top:1px solid var(--border);margin:20px 0;"></div>
+  <div class="form-group">
+    <label class="form-label" style="font-weight:500;">¿Quieres contarnos algo más? <span style="font-weight:400;color:var(--text-ter);font-size:12px;">(opcional)</span></label>
+    <p style="font-size:12px;color:var(--text-ter);margin-bottom:8px;">Una duda, algo que te preocupa, tu número de WhatsApp o el nombre de tu empresa.</p>
+    <textarea id="f-open" placeholder='Escribe aquí lo que quieras...' style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:Poppins,sans-serif;background:var(--white);color:var(--text);min-height:80px;resize:none;transition:border-color .2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+  </div>
+  <p id="form-error" style="font-size:12px;color:var(--red);margin-bottom:10px;display:none;">Por favor ingresa tu nombre y correo para continuar.</p>
+  <button class="btn-main" onclick="submitAndShow()">Ver mi semáforo →</button>
+  <p class="privacy-note">No compartimos tu información con terceros</p>
 </div>
 
 <!-- RESULTS -->
@@ -304,15 +316,41 @@ function calcScores(){
   });
 }
 
-function validateAndShow(){
-  const email = document.getElementById('confirm-email').value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!email || !emailRegex.test(email)){
-    document.getElementById('email-error').style.display='block';
-    document.getElementById('confirm-email').style.borderColor='var(--red)';
+function submitAndShow(){
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const errEl = document.getElementById('form-error');
+
+  if(!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    errEl.style.display = 'block';
     return;
   }
-  document.getElementById('email-error').style.display='none';
+  errEl.style.display = 'none';
+
+  const giro = document.getElementById('f-giro').value.trim();
+  const size = document.getElementById('f-size').value;
+  const open = document.getElementById('f-open').value.trim();
+  const scores = 'Fiscal=' + axisScoresGlobal[0] + '/15 | Operacion=' + axisScoresGlobal[1] + '/15 | Internacional=' + axisScoresGlobal[2] + '/15 | Organizacion=' + axisScoresGlobal[3] + '/15';
+
+  fetch('https://formspree.io/f/xnjggaev', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+    body: JSON.stringify({
+      nombre: name,
+      correo: email,
+      giro: giro || 'No indicado',
+      tamano: size || 'No indicado',
+      comentarios: open || 'Sin comentarios',
+      scores: scores,
+      _replyto: email,
+      _subject: 'Nuevo diagnóstico CLeaders — ' + name
+    })
+  }).then(r => r.json()).then(d => {
+    console.log('Formspree:', d);
+  }).catch(e => {
+    console.log('Error:', e);
+  });
+
   showResults();
 }
 
